@@ -1,0 +1,55 @@
+.header {
+    margin: 60px;
+}
+
+.paymentDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.method {
+    width: 45%;
+    padding: 0 30px;
+}
+
+.submit {
+    width: 45%;
+    padding: 0 30px;
+}
+
+@media screen and (max-width: 1200px) {
+    .submit {
+        width: 50%;
+    }
+
+    .method {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    .paymentDiv {
+        flex-direction: column-reverse;
+    }
+
+    .selectPayment {
+        margin-bottom: 20px;
+    }
+
+    .paymentDiv button {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .submit {
+        width: 90%;
+        margin-bottom: 30px;
+    }
+
+    .method {
+        width: 100%;
+    }
+}
