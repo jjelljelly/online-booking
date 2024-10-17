@@ -1,0 +1,37 @@
+.form {
+    width: 80%;
+    /* height: 100vh; */
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form h2 {
+    margin: 10px 0px 40px;
+}
+
+.labelsDiv {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.labelsDiv input {
+    padding: 5px;
+    width: 90%;
+    margin: 10px 5px 5px 10px;
+}
+
+.form button {
+    padding: 10px;
+    margin: 10px;
+}
+
+@media screen and (max-width: 1200px) {
+    .form {
+        margin-top: 80px;
+    }
+}

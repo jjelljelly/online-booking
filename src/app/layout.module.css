@@ -1,0 +1,28 @@
+.pageLayout {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.childrenDiv {
+    width: 65%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    top: 0;
+    left: 17%;
+}
+
+@media screen and (max-width: 1200px) {
+    .pageLayout {
+        flex-direction: column;
+    }
+
+    .childrenDiv {
+        width: 100%;
+        left: 0;
+    }
+}
