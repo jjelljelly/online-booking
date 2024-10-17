@@ -9,20 +9,20 @@ import style from './PaymentMethod.module.css'
 import { useState } from 'react';
 import { usePatientContext, Data } from '@/app/context/patientContext';
 
-export const INSURANCE_TYPE = {
-    SELF_FUNDING: "Self-funding",
-    AXA_PPP: "AXA PPP",
-    AXA_INT: "AXA PPP International",
-    AETNA: "Aetna",
-    ALLIANZ: "Allianz",
-    BUPA: "Bupa",
-    BUPA_INT: "Bupa International",
-    CIGNA: "Cigna",
-    CIGNA_INT: "Cigna International",
-    HEALIX: "Healix",
-    VITALITY: "Vitality",
-    WPA: "WPA",
-    OTHER: "OTHER"
+export enum INSURANCE_TYPE {
+    SELF_FUNDING = "Self-funding",
+    AXA_PPP = "AXA PPP",
+    AXA_INT = "AXA PPP International",
+    AETNA = "Aetna",
+    ALLIANZ = "Allianz",
+    BUPA = "Bupa",
+    BUPA_INT = "Bupa International",
+    CIGNA = "Cigna",
+    CIGNA_INT = "Cigna International",
+    HEALIX = "Healix",
+    VITALITY = "Vitality",
+    WPA = "WPA",
+    OTHER = "OTHER"
 }
 
 const handleSubmit = (patientData: Data, value: StepsData, paymentMethod: string) => {

@@ -1,22 +1,22 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 
-export const STEPS_NAMES = {
-    STEP_1_1: "STEP_1_1",
-    STEP_1_2: "STEP_1_2",
-    STEP_1_3: "STEP_1_3",
-    STEP_2_1: "STEP_2_1",
-    STEP_3_1: "STEP_3_1",
-    LOADING: "LOADING"
+export enum STEPS_NAMES {
+    STEP_1_1,
+    STEP_1_2,
+    STEP_1_3,
+    STEP_2_1,
+    STEP_3_1,
+    LOADING,
 }
 
-export const StepsContext = createContext<{ step: string, setStep: (step: string) => void } | null>(null);
+export const StepsContext = createContext<{ step: number, setStep: (step: number) => void } | null>(null);
 
-export type StepsType = string
+export type StepsType = number
 
 export type StepsData = {
     step: StepsType;
-    setStep: (step: string) => void;
+    setStep: (step: number) => void;
 } | null;
 
 export type StepsProviderType = {

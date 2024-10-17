@@ -12,7 +12,7 @@ export default function AppointmentType() {
             content_type: "appointmentType",
         })
             .then((result: Entry<EntrySkeletonType, undefined, string>[] | null) => {
-                let updateResult: Appointment[] | null = result?.map((item: any) => Appointment.build({ ...item.fields })) ?? null
+                const updateResult: Appointment[] | null = result?.map((item: any) => Appointment.build({ ...item.fields })) ?? null
                 setAppointmentTypes(updateResult)
             })
             .catch(err => console.error(err))

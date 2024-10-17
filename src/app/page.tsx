@@ -13,9 +13,9 @@ export default function Home() {
   const info = useDataContext()
   const [patientData, setPatientData] = useState<DataType>(null)
   const patientDataValue = { patientData, setPatientData }
-  const newEndTime = new Date()
-  newEndTime.setFullYear(newEndTime.getFullYear() + 1)
-  const [startDate, setStartDate] = useState({ startTime: new Date(), endTime: newEndTime })
+  const endTime = new Date()
+  endTime.setFullYear(endTime.getFullYear() + 1)
+  const [startDate, setStartDate] = useState(new Date())
 
   useEffect(() => {
     if (!process.env.NEXT_PUBLIC_FIND_AVAILABILITY) {
@@ -26,17 +26,17 @@ export default function Home() {
       body: JSON.stringify({
         info: {
           ...info?.data,
-          startTime: startDate.startTime.toISOString()
+          startTime: startDate.toISOString()
         }
       })
     })
       .then((response) => response.json())
       .then((res) => {
         info?.setData({ ...info?.data, ...res })
-        const newStartTime = startDate.startTime
-        newStartTime.setMonth(startDate.startTime.getMonth() + 2)
-        if (newStartTime <= startDate.endTime) {
-          setStartDate(prev => ({ ...prev, startTime: newStartTime }))
+        const newStartTime = startDate
+        newStartTime.setMonth(startDate.getMonth() + 2)
+        if (newStartTime <= endTime) {
+          setStartDate(prev => (newStartTime))
         }
       })
   }, [startDate]);

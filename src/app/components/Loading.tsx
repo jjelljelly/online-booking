@@ -6,10 +6,10 @@ export function Loading({ isLoading }: any) {
     const value = useStepsContext()
 
     return (
-        <div>
+        <>
             <Backdrop color={"#20365F"} open={isLoading ? true : false} >
                 <CircularProgress color="inherit" />
             </Backdrop>
-        </div>
+        </>
     );
 }

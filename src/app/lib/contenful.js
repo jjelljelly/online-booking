@@ -8,8 +8,6 @@ export const client = createClient({
 //fetch posts
 export const fetchEntries = async (type) => {
     const entries = await client.getEntries(type);
-    console.log('entries', entries)
     if (entries.items) return entries.items;
-    console.log(`Error getting Entries.`);
     return null
 };
