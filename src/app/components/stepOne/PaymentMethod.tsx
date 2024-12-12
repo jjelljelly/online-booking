@@ -1,13 +1,12 @@
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Check from '@mui/icons-material/Check';
 import { useStepsContext, StepsData, STEPS_NAMES } from '@/app/context/stepsContext';
 import style from './PaymentMethod.module.css'
-import { useState } from 'react';
 import { usePatientContext, Data } from '@/app/context/patientContext';
+import { ChevronLeft } from '../templates/ChevronLeft';
+import { HeaderSection } from '../templates/HeaderSection';
 
 export enum INSURANCE_TYPE {
     SELF_FUNDING = "Self-funding",
@@ -25,48 +24,33 @@ export enum INSURANCE_TYPE {
     OTHER = "OTHER"
 }
 
-const handleSubmit = (patientData: Data, value: StepsData, paymentMethod: string) => {
-    patientData?.setPatientData({ paymentMethod: paymentMethod })
+const handleSubmit = (patientData: Data, value: StepsData, item: string) => {
+    patientData?.setPatientData({ paymentMethod: item })
     value?.setStep(STEPS_NAMES.STEP_2_1)
 }
 
 export function PaymentMethod() {
     const value = useStepsContext()
     const patientData = usePatientContext()
-    const [paymentMethod, setPaymentMethod] = useState('')
 
     return (
         <>
-            <h2 className={style.header}>Select Payment Type</h2>
+            <HeaderSection stepUpdate={STEPS_NAMES.STEP_1_1} headerText={'Select Payment Type'} />
             <div className={style.paymentDiv}>
-                <div className={style.method}>
-                    <Paper sx={{ width: 320 }}>
-                        <MenuList dense>
-                            {Object.values(INSURANCE_TYPE).map((item) =>
-                                <MenuItem
-                                    onClick={() => setPaymentMethod(item)}
-                                    sx={{ position: "relative" }}
-                                    key={item}
-                                >
-                                    {paymentMethod === item
-                                        && <ListItemIcon sx={{ position: "absolute", left: 10 }}>
-                                            <Check />
-                                        </ListItemIcon>
-                                    }
-                                    <ListItemText>{item}</ListItemText>
-                                </MenuItem>
-                            )}
-                        </MenuList>
-                    </Paper>
-                </div>
-                <div className={style.submit}>
-                    <p className={style.selectPayment}>Please select and submit your payment method, we can then provide you with a list of appointment types</p>
-                    {paymentMethod ?
-                        <button onClick={() => handleSubmit(patientData, value, paymentMethod)}>Submit payment method</button> :
-                        <button disabled>Select payment method</button>
-                    }
-                    <button onClick={() => value?.setStep(STEPS_NAMES.STEP_1_1)}>Back to Home</button>
-                </div>
+                <h4 className={style.selectPayment}>Please select your payment method</h4>
+                <Paper sx={{ width: 400 }}>
+                    <MenuList dense className={style.menuList}>
+                        {Object.values(INSURANCE_TYPE).map((item) =>
+                            <MenuItem
+                                className={style.listItem}
+                                key={item}
+                                onClick={() => handleSubmit(patientData, value, item)}
+                            >
+                                <ListItemText>{item}</ListItemText>
+                            </MenuItem>
+                        )}
+                    </MenuList>
+                </Paper>
             </div>
         </>
     );

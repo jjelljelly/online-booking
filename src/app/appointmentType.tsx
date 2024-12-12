@@ -19,6 +19,8 @@ export default function AppointmentType() {
     }, []);
 
     return (
-        <AppointmentCards appointmentTypes={appointmentTypes} />
+        <>
+            <AppointmentCards appointmentTypes={appointmentTypes} />
+        </>
     )
 }

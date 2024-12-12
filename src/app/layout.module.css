@@ -9,11 +9,12 @@
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     text-align: center;
-    position: relative;
+    position: fixed;
     top: 0;
-    left: 17%;
+    right: 0;
+    overflow: auto;
 }
 
 @media screen and (max-width: 1200px) {
@@ -24,5 +25,6 @@
     .childrenDiv {
         width: 100%;
         left: 0;
+        position: relative;
     }
 }

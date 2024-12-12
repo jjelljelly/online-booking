@@ -1,16 +1,23 @@
 import { useContext, createContext } from "react";
 
-export const DataContext = createContext<{ data: { [key: string]: string } | null, setData: (data: { [key: string]: string }) => void } | null>(null);
+export const DataContext = createContext<{ data: DataType, setData: (data: DataType) => void } | null>(null);
 
 export type DataType = {
-    [key: string]: string;
+    startTime: string,
+    kaserFinalAvailableDates: string[],
+    stevenFinalAvailableDates20: string[],
+    stevenFinalAvailableDates40: string[],
+    stevenFinalAvailableDates60: string[],
+    kaserThenStevenAvailableDates: string[],
+    kaserWithNurseAvailableDates: string[],
+    stevenWithNurseAvailableDates20: string[],
+    stevenWithNurseAvailableDates40: string[],
+    stevenWithNurseAvailableDates60: string[]
 } | null
 
 export type Data = {
     data: DataType;
-    setData: (data: {
-        [key: string]: string;
-    }) => void;
+    setData: (data: DataType) => void;
 } | null;
 
 export type DataProviderType = {

@@ -1,16 +1,35 @@
 import { useContext, createContext } from "react";
+import { Appointment } from "../types/Appointment";
 
-export const patientContext = createContext<{ patientData: { [key: string]: string } | null, setPatientData: (patientData: { [key: string]: string }) => void } | null>(null);
+export const patientContext = createContext<{ patientData: DataType, setPatientData: (patientData: DataType) => void } | null>(null);
 
 export type DataType = {
-    [key: string]: string;
+    paymentMethod?: string,
+    appointment?: Appointment,
+    firstName?: string,
+    lastName?: string,
+    email?: string,
+    selectedDate?: string,
+    isNewPatient?: boolean,
+    registrationData?: {
+        title: string,
+        firstName: string,
+        lastName: string,
+        email: string,
+        telephone: string,
+        address: string,
+        dob: string,
+        policy: string,
+        auth: string,
+        gpAddress: string,
+        gpEmail: string,
+        privacy: boolean
+    }
 } | null
 
 export type Data = {
     patientData: DataType;
-    setPatientData: (patientData: {
-        [key: string]: string;
-    }) => void;
+    setPatientData: (patientData: DataType) => void;
 } | null;
 
 export type DataProviderType = {

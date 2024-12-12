@@ -1,0 +1,30 @@
+.layout {
+    width: 55%;
+    display: flex;
+    justify-content: center;
+}
+
+.timesDiv {
+    height: 200px;
+    overflow: auto;
+    width: 90%;
+}
+
+.menuDate {
+    background-color: #248ec2;
+    border: 1px white solid;
+    border-radius: 5px;
+    color: white;
+}
+
+.menuDate:hover {
+    background-color: #1d355e;
+    color: white;
+}
+
+@media screen and (max-width: 1200px) {
+    .layout {
+        margin: 0 20px;
+        width: 45%;
+    }
+}

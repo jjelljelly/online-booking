@@ -1,55 +1,38 @@
-.header {
-    margin: 60px;
+.headerDiv {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 8ch auto 8ch;
+    grid-auto-rows: minmax(100px, auto);
 }
 
 .paymentDiv {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 100%;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
 }
 
-.method {
-    width: 45%;
-    padding: 0 30px;
+.selectPayment {
+    padding: 20px;
 }
 
-.submit {
-    width: 45%;
-    padding: 0 30px;
+.menuList {
+    background-color: rgba(36, 142, 194, 0.2);
+    color: rgb(32, 54, 95);
+    border: solid, 3px, rgba(32, 54, 95, 0.6);
 }
 
-@media screen and (max-width: 1200px) {
-    .submit {
-        width: 50%;
-    }
-
-    .method {
-        width: 50%;
-    }
+.listItem:hover {
+    background-color: rgba(36, 142, 194, 0.8);
+    color: white;
+    position: relative;
 }
 
-@media screen and (max-width: 700px) {
-
-    .paymentDiv {
-        flex-direction: column-reverse;
-    }
-
-    .selectPayment {
-        margin-bottom: 20px;
-    }
-
-    .paymentDiv button {
-        padding: 10px;
-        margin: 10px 0;
-    }
-
-    .submit {
-        width: 90%;
-        margin-bottom: 30px;
-    }
-
-    .method {
-        width: 100%;
+@media screen and (max-width: 800px) {
+    .menuList {
+        width: 80%;
+        margin: 10px 40px 20px;
     }
 }

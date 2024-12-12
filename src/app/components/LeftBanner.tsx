@@ -7,17 +7,21 @@ export function LeftBanner() {
     const STEP_1 = "Step 1"
     const STEP_2 = "Step 2"
     const STEP_3 = "Step 3"
+    const ERROR = "Error"
 
     const STEP_MAP = {
         [STEPS_NAMES.STEP_1_1]: STEP_1,
         [STEPS_NAMES.STEP_1_2]: STEP_1,
         [STEPS_NAMES.STEP_1_3]: STEP_1,
         [STEPS_NAMES.STEP_2_1]: STEP_2,
+        [STEPS_NAMES.STEP_2_2]: STEP_2,
         [STEPS_NAMES.STEP_3_1]: STEP_3,
-
+        [STEPS_NAMES.STEP_3_2]: STEP_3,
+        [STEPS_NAMES.ERROR_LOCATE]: ERROR,
+        [STEPS_NAMES.ERROR_SUBMIT]: ERROR
     }
 
-    const progress = STEP_MAP[value?.step ?? STEPS_NAMES.STEP_1_1]
+    const progress: string = STEP_MAP[value?.step ?? STEPS_NAMES.STEP_1_1]
 
     return (
         <div className={style.bannerWrap}>

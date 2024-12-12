@@ -7,20 +7,28 @@ import CardActionArea from '@mui/material/CardActionArea';
 import style from './AppointmentCards.module.css'
 import Image from "next/image";
 import { usePatientContext } from "@/app/context/patientContext";
+import { HeaderSection } from "../templates/HeaderSection";
+import { STEPS_NAMES, useStepsContext } from "@/app/context/stepsContext";
 
 export function FollowPatientCards({ appointmentTypes }: any | null) {
     const patientData = usePatientContext()
+    const value = useStepsContext()
+
+    const handleChange = (appointment: Appointment) => {
+        patientData?.setPatientData({ appointment: appointment })
+        value?.setStep(STEPS_NAMES.STEP_2_2)
+    }
 
     const checkInfo = useGetFollowPatientAppointments(appointmentTypes)
 
     return (
-        <div className={style.cont}>
-            <h2>Hello {patientData?.patientData?.firstName}</h2>
-            <h3>Please select appointment type</h3>
-            <div className={style.cardContainer}>
-                {
-                    checkInfo?.map((appointment: Appointment) => (
-                        <Card key={appointment.appointmentKey} className={style.card}>
+        <>
+            <div className={style.cont}>
+                <HeaderSection stepUpdate={STEPS_NAMES.STEP_1_1} headerText={'Appointment Type'} />
+                <div className={style.cardContainer}>
+                    {checkInfo?.map((appointment: Appointment) => (
+                        <Card key={appointment.appointmentKey} className={style.card} onClick={() => handleChange(appointment)
+                        }>
                             <CardActionArea>
                                 <Image
                                     width={300}
@@ -36,9 +44,9 @@ export function FollowPatientCards({ appointmentTypes }: any | null) {
                                 </CardContent>
                             </CardActionArea>
                         </Card>
-                    ))
-                }
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     )
 }

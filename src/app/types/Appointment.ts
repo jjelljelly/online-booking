@@ -9,6 +9,7 @@ export class Appointment {
     newPatient: boolean
     key: string
     cardImage: any
+    type: string
 
     // constructor is private (developers cannot create an instance with "new Appointment()", they must use build method)
     private constructor(
@@ -20,7 +21,8 @@ export class Appointment {
         appointmentFee: number,
         newPatient: boolean,
         key: string,
-        cardImage: any
+        cardImage: any,
+        type: string
     ) {
         this.appointmentName = appointmentName,
             this.appointmentLength = appointmentLength,
@@ -30,7 +32,8 @@ export class Appointment {
             this.appointmentFee = appointmentFee,
             this.newPatient = newPatient,
             this.key = key,
-            this.cardImage = cardImage
+            this.cardImage = cardImage,
+            this.type = type
     }
 
     // how to create an instance, this allows us to convert between two types and guarantee that we have all properties
@@ -43,7 +46,8 @@ export class Appointment {
         appointmentFee,
         newPatient,
         key,
-        cardImage
+        cardImage,
+        type
     }: Appointment) {
         return new Appointment(
             appointmentName,
@@ -54,7 +58,8 @@ export class Appointment {
             appointmentFee,
             newPatient,
             key,
-            cardImage
+            cardImage,
+            type
         )
     }
 
@@ -73,6 +78,14 @@ export class Appointment {
 
     get appointmentKey(): string {
         return this.key
+    }
+
+    get nurseRequired(): boolean {
+        return this.withinNursingHours
+    }
+
+    get checkAppointmentFee(): number {
+        return this.appointmentFee
     }
 
     hasSpecialist(specialist: string): boolean {

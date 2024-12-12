@@ -1,0 +1,35 @@
+.errorDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #20365F;
+}
+
+.errorDiv p {
+    padding: 10px;
+}
+
+.errorDiv h2 {
+    margin: 20px;
+}
+
+.update {
+    background-color: #20365F;
+    color: white;
+    width: 80%;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px 60px 20px;
+}
+
+.update a {
+    text-decoration: none;
+    color: white;
+}
+
+@media screen and (max-width: 800px) {
+    .update {
+        margin: 20px;
+    }
+}

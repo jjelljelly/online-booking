@@ -7,9 +7,10 @@ export function AppointmentCards({ appointmentTypes }: any | null) {
 
     return (
         <>
-            {patientData?.patientData?.firstName ?
-                <FollowPatientCards appointmentTypes={appointmentTypes} /> :
-                <NewPatientCards appointmentTypes={appointmentTypes} />
+            {patientData?.patientData?.isNewPatient ?
+                <NewPatientCards appointmentTypes={appointmentTypes} /> :
+                <FollowPatientCards appointmentTypes={appointmentTypes} />
+
             }
         </>
     )

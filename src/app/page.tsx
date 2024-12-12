@@ -6,13 +6,17 @@ import { useDataContext } from "./context/dataContext";
 import { AppointmentList } from "./components/stepOne/AppointmentList";
 import style from './page.module.css'
 import { PatientDataProvider, DataType } from "./context/patientContext";
-import AppointmentType from "./appointmentType";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 export default function Home() {
-  const value = useStepsContext()
   const info = useDataContext()
   const [patientData, setPatientData] = useState<DataType>(null)
-  const patientDataValue = { patientData, setPatientData }
+  const mergePatientData = (patientData: DataType) => {
+    setPatientData(prev => ({ ...prev, ...patientData }))
+  }
+  const patientDataValue = { patientData, setPatientData: mergePatientData }
+
   const endTime = new Date()
   endTime.setFullYear(endTime.getFullYear() + 1)
   const [startDate, setStartDate] = useState(new Date())
@@ -25,27 +29,29 @@ export default function Home() {
       method: "POST",
       body: JSON.stringify({
         info: {
-          ...info?.data,
+          ...(info?.data ?? {}),
           startTime: startDate.toISOString()
         }
       })
     })
       .then((response) => response.json())
       .then((res) => {
-        info?.setData({ ...info?.data, ...res })
-        const newStartTime = startDate
-        newStartTime.setMonth(startDate.getMonth() + 2)
-        if (newStartTime <= endTime) {
-          setStartDate(prev => (newStartTime))
+        info?.setData({ ...(info?.data ?? {}), ...res })
+        const newStartTime = new Date(startDate)
+        newStartTime.setMonth(newStartTime.getMonth() + 2)
+        if (newStartTime < endTime) {
+          setStartDate(prev => newStartTime)
         }
-      })
+      }).catch(error => console.error(error))
   }, [startDate]);
   return (
     <div className={style.pageDiv}>
       <main>
-        <PatientDataProvider patientData={patientDataValue}>
-          <AppointmentList />
-        </PatientDataProvider>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <PatientDataProvider patientData={patientDataValue}>
+            <AppointmentList />
+          </PatientDataProvider>
+        </LocalizationProvider>
       </main>
     </div>
   );

@@ -5,7 +5,8 @@ import { useState } from 'react'
 import './globals.css'
 import { StepsProvider, StepsData, STEPS_NAMES } from './context/stepsContext'
 import { LeftBanner } from './components/LeftBanner'
-import { Data, DataProvider, DataType } from './context/dataContext'
+import { DataProvider, DataType } from './context/dataContext'
+import { HeaderSection } from './components/templates/HeaderSection'
 
 export default function Layout({
   children,
