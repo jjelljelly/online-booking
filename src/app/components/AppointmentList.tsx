@@ -1,14 +1,14 @@
 
 import { useStepsContext, STEPS_NAMES } from '@/app/context/stepsContext'
-import { NewFollow } from './NewFollow'
-import { PaymentMethod } from './PaymentMethod'
-import AppointmentType from '../../appointmentType'
-import { FindPatient } from './FindPatient'
-import { CardCalendar } from '../stepTwo/CardCalendar'
-import { RegistrationForm } from '../stepThree/RegistrationForm'
-import { Completion } from '../stepThree/Completion'
-import { ErrorPatient } from './ErrorPatient'
-import { ErrorSubmit } from '../stepThree/ErrorSubmit'
+import { NewFollow } from './stepOne/NewFollow'
+import { PaymentMethod } from './stepOne/PaymentMethod'
+import { AppointmentType } from '../appointmentType'
+import { FindPatient } from './stepOne/FindPatient'
+import { CardCalendar } from './stepTwo/CardCalendar'
+import { RegistrationForm } from './stepThree/RegistrationForm'
+import { Completion } from './stepThree/Completion'
+import { ErrorPatient } from './stepOne/ErrorPatient'
+import { ErrorSubmit } from './stepThree/ErrorSubmit'
 
 export function AppointmentList() {
     const value = useStepsContext()
@@ -36,7 +36,6 @@ export function AppointmentList() {
         return (
             <RegistrationForm />
         )
-
     } else if (value?.step === STEPS_NAMES.STEP_3_2) {
         return (
             <Completion />

@@ -6,7 +6,13 @@ import style from './NewFollow.module.css'
 import { useStepsContext, STEPS_NAMES } from '@/app/context/stepsContext'
 import { CardActionArea } from '@mui/material';
 
-const AppointmentOptions = [
+type SubmitItems = {
+    name: string;
+    description: string;
+    step: STEPS_NAMES;
+}
+
+const appointmentOptions = [
     {
         name: "Initial Visit",
         description: "Select if this is your first appointment or if last appointment was over a year ago",
@@ -24,7 +30,7 @@ export function NewFollow() {
     const value = useStepsContext()
     const patientData = usePatientContext()
 
-    const handleSubmit = async (item: any) => {
+    const handleSubmit = async (item: SubmitItems) => {
         patientData?.setPatientData({ isNewPatient: item?.name === "Initial Visit" ? true : false })
         value?.setStep(item.step)
     }
@@ -38,7 +44,7 @@ export function NewFollow() {
                 <div></div>
             </div>
             <div className={style.cardDiv}>
-                {AppointmentOptions.map((item) =>
+                {appointmentOptions.map((item) =>
                     <Card key={item.name} className={style.card} onClick={() => handleSubmit(item)}>
                         <CardActionArea className={style.cardContent}>
                             <CardContent>

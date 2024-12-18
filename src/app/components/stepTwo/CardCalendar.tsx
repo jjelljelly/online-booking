@@ -1,4 +1,3 @@
-import { Appointment } from "@/app/types/Appointment"
 import Card from "@mui/material/Card"
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -26,7 +25,7 @@ export function CardCalendar() {
                         height={300}
                         className={style.image}
                         src={'https:' + patientData?.patientData?.appointment?.cardImage?.fields?.file?.url}
-                        alt={patientData?.patientData?.appointment?.cardImage?.fields?.file?.fileName}
+                        alt={patientData?.patientData?.appointment?.cardImage?.fields?.file?.fileName ?? ""}
                     />
                     <CardContent>
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>

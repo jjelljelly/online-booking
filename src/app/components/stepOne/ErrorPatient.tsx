@@ -1,11 +1,8 @@
 import style from './ErrorPatient.module.css'
-import { usePatientContext } from '@/app/context/patientContext'
 import { STEPS_NAMES } from '@/app/context/stepsContext'
 import { HeaderSection } from '../templates/HeaderSection'
 
 export function ErrorPatient() {
-    const patientData = usePatientContext()
-
 
     return (
         <>

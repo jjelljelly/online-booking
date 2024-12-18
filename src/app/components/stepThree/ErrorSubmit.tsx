@@ -1,11 +1,8 @@
 import style from './ErrorSubmit.module.css'
-import { usePatientContext } from '@/app/context/patientContext'
 import { STEPS_NAMES } from '@/app/context/stepsContext'
 import { HeaderSection } from '../templates/HeaderSection'
 
 export function ErrorSubmit() {
-    const patientData = usePatientContext()
-
 
     return (
         <>

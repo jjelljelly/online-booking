@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import style from './RegistrationForm.module.css'
 import { usePatientContext } from '@/app/context/patientContext';
 import { HeaderSection } from '../templates/HeaderSection';
 import { STEPS_NAMES } from '@/app/context/stepsContext';
 import { useStepsContext } from '@/app/context/stepsContext';
-import { fetchConfirmationResponse } from '../functions/fetchConfirmationResponse';
+import { fetchConfirmationResponse, RESPONSE_STRING } from '../functions/fetchConfirmationResponse';
 import { Loading } from '../Loading';
 import AutoComplete from 'places-autocomplete-react';
 
@@ -47,7 +47,7 @@ export function RegistrationForm() {
             }
         }
     }
-    const handleSubmit = async (event: any) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         setIsLoading(true)
         patientData?.setPatientData({
@@ -56,7 +56,7 @@ export function RegistrationForm() {
             }
         })
         const submitForm = await fetchConfirmationResponse(patientData)
-        if (submitForm.outcome === "Successful") {
+        if (submitForm?.outcome === RESPONSE_STRING) {
             setIsLoading(false)
             value?.setStep(STEPS_NAMES.STEP_3_2)
         } else {
@@ -71,7 +71,7 @@ export function RegistrationForm() {
             <div className={style.bookingContainer}>
                 <form
                     className={style.bookingForm}
-                    onSubmit={(event: any) => handleSubmit(event)}
+                    onSubmit={(event) => handleSubmit(event)}
                 >
                     <label>
                         <div className={style.bookingLabel}>Title:</div> <div className={style.requiredIcon}>*</div>
@@ -119,7 +119,7 @@ export function RegistrationForm() {
                         <AutoComplete
                             placesKey="AIzaSyAkuPHNHz8Ki1KV6n6iI1-EFVIC3ZAm0QY"
                             inputId="address"
-                            setAddress={(addressObject: any) => addressSelection('home', addressObject)}
+                            setAddress={(addressObject: { [index: string]: {}; }) => addressSelection('home', addressObject)}
                             required={true}
                         />
                         <hr />
@@ -131,7 +131,7 @@ export function RegistrationForm() {
                         <AutoComplete
                             placesKey="AIzaSyAkuPHNHz8Ki1KV6n6iI1-EFVIC3ZAm0QY"
                             inputId="gpAddress"
-                            setAddress={(addressObject: any) => addressSelection('gp', addressObject)}
+                            setAddress={(addressObject: { [index: string]: {}; }) => addressSelection('gp', addressObject)}
                         />
 
                         <hr />

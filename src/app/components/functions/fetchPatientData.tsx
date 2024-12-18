@@ -1,4 +1,7 @@
-export async function fetchPatientData(data: any) {
+import { ConfirmationResponse } from "./fetchConfirmationResponse";
+
+export async function fetchPatientData(data: FormData): Promise<ConfirmationResponse | null> {
+
     const options = {
         method: "POST",
         body: data
@@ -12,6 +15,7 @@ export async function fetchPatientData(data: any) {
         return res;
     } catch (error) {
         console.error(error);
+        return null
     }
 
 }

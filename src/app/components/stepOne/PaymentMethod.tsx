@@ -5,7 +5,6 @@ import ListItemText from '@mui/material/ListItemText';
 import { useStepsContext, StepsData, STEPS_NAMES } from '@/app/context/stepsContext';
 import style from './PaymentMethod.module.css'
 import { usePatientContext, Data } from '@/app/context/patientContext';
-import { ChevronLeft } from '../templates/ChevronLeft';
 import { HeaderSection } from '../templates/HeaderSection';
 
 export enum INSURANCE_TYPE {

@@ -1,18 +1,35 @@
 import { useEffect, useState } from 'react';
 import { fetchEntries } from './lib/contenful';
-import { AppointmentCards } from './components/stepTwo/AppointmentCards';
-import { Entry, EntrySkeletonType } from 'contentful';
 import { Appointment } from './types/Appointment';
+import { usePatientContext } from "@/app/context/patientContext";
+import { NewPatientCards } from './components/stepTwo/NewPatientCards';
+import { FollowPatientCards } from './components/stepTwo/FollowPatientCards';
 
-export default function AppointmentType() {
+type AppointmentResponse = {
+    appointmentName: string
+    appointmentLength: number
+    specialistincluded: string[]
+    paymentType: string[]
+    withinNursingHours: boolean
+    appointmentFee: number
+    newPatient: boolean
+    key: string
+    cardImage: { fields: { file: { url: string, fileName: string } } }
+    type: string
+}
+
+export function AppointmentType() {
+    const patientData = usePatientContext()
     const [appointmentTypes, setAppointmentTypes] = useState<Appointment[] | null>(null)
 
     useEffect(() => {
         fetchEntries({
             content_type: "appointmentType",
         })
-            .then((result: Entry<EntrySkeletonType, undefined, string>[] | null) => {
-                const updateResult: Appointment[] | null = result?.map((item: any) => Appointment.build({ ...item.fields })) ?? null
+            .then((result) => {
+                const updateResult: Appointment[] | null = (result as unknown as { fields: AppointmentResponse }[])?.map((item) => Appointment.build({
+                    ...item.fields
+                })) ?? null
                 setAppointmentTypes(updateResult)
             })
             .catch(err => console.error(err))
@@ -20,7 +37,11 @@ export default function AppointmentType() {
 
     return (
         <>
-            <AppointmentCards appointmentTypes={appointmentTypes} />
+            {patientData?.patientData?.isNewPatient ?
+                <NewPatientCards appointmentTypes={appointmentTypes} /> :
+                <FollowPatientCards appointmentTypes={appointmentTypes} />
+
+            }
         </>
     )
 }

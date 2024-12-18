@@ -1,9 +1,8 @@
 "use client";
 
-import { useStepsContext } from "./context/stepsContext";
 import { useState, useEffect } from "react";
 import { useDataContext } from "./context/dataContext";
-import { AppointmentList } from "./components/stepOne/AppointmentList";
+import { AppointmentList } from "./components/AppointmentList";
 import style from './page.module.css'
 import { PatientDataProvider, DataType } from "./context/patientContext";
 import { LocalizationProvider } from "@mui/x-date-pickers";

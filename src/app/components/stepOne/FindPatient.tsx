@@ -5,12 +5,15 @@ import { useStepsContext, STEPS_NAMES } from '@/app/context/stepsContext';
 import { usePatientContext } from '@/app/context/patientContext';
 import { Loading } from '../Loading';
 import { HeaderSection } from '../templates/HeaderSection';
+import { RESPONSE_STRING } from '../functions/fetchConfirmationResponse';
+
+type FormEvent = { preventDefault: () => void; target: { dob: { value: string; }; last_name: { value: string }; email: { value: string }; first_name: { value: string; }; }; }
 
 export function FindPatient() {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const value = useStepsContext()
     const patientData = usePatientContext()
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         setIsLoading(true)
         const form = new FormData()
@@ -18,7 +21,7 @@ export function FindPatient() {
         form.append("name", e.target.last_name.value)
         form.append("email", e.target.email.value)
         const data = await fetchPatientData(form)
-        if (data.outcome) {
+        if (data?.outcome === RESPONSE_STRING) {
             patientData?.setPatientData({ firstName: e.target.first_name.value, lastName: e.target.last_name.value, email: e.target.email.value, paymentMethod: data.paymentMethod })
             setIsLoading(false)
             value?.setStep(STEPS_NAMES.STEP_2_1)
@@ -29,7 +32,7 @@ export function FindPatient() {
 
     return <>
         <HeaderSection stepUpdate={STEPS_NAMES.STEP_1_1} headerText={'Help us find your profile'} />
-        <form className={style.form} onSubmit={handleSubmit}>
+        <form className={style.form} onSubmit={(e) => handleSubmit(e as unknown as FormEvent)}>
             <div className={style.labelsDiv}>
                 <label>
                     First name:

@@ -10,7 +10,7 @@ import { usePatientContext } from "@/app/context/patientContext";
 import { HeaderSection } from "../templates/HeaderSection";
 import { STEPS_NAMES, useStepsContext } from "@/app/context/stepsContext";
 
-export function FollowPatientCards({ appointmentTypes }: any | null) {
+export function FollowPatientCards({ appointmentTypes }: { appointmentTypes: Appointment[] | null }) {
     const patientData = usePatientContext()
     const value = useStepsContext()
 
@@ -20,6 +20,7 @@ export function FollowPatientCards({ appointmentTypes }: any | null) {
     }
 
     const checkInfo = useGetFollowPatientAppointments(appointmentTypes)
+
 
     return (
         <>

@@ -8,7 +8,6 @@
 .paymentDiv {
     display: flex;
     align-items: center;
-    /* flex-wrap: wrap; */
     flex-direction: column;
     text-align: center;
     justify-content: center;

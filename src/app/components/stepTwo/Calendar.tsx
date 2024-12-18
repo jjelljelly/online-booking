@@ -11,6 +11,7 @@ import { SPECIALIST } from "./AppointmentSelectFunction";
 import { usePatientContext } from '@/app/context/patientContext';
 import { fetchFuConfirmationResponse } from '../functions/fetchFuConfirmationResponse';
 import { Loading } from '../Loading';
+import { RESPONSE_STRING } from '../functions/fetchConfirmationResponse';
 
 type SlotProps = PickersDayProps<Dayjs> & { availableDates?: string[] }
 
@@ -81,7 +82,7 @@ export function Calendar() {
         } else {
             setIsLoading(true)
             const submitBooking = await fetchFuConfirmationResponse(patientData, currDate)
-            if (submitBooking.outcome === "Successful") {
+            if (submitBooking?.outcome === RESPONSE_STRING) {
                 setIsLoading(false)
                 value?.setStep(STEPS_NAMES.STEP_3_2)
             } else {

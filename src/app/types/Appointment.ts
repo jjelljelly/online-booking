@@ -8,7 +8,7 @@ export class Appointment {
     appointmentFee: number
     newPatient: boolean
     key: string
-    cardImage: any
+    cardImage: { fields: { file: { url: string, fileName: string } } }
     type: string
 
     // constructor is private (developers cannot create an instance with "new Appointment()", they must use build method)
@@ -21,7 +21,7 @@ export class Appointment {
         appointmentFee: number,
         newPatient: boolean,
         key: string,
-        cardImage: any,
+        cardImage: { fields: { file: { url: string, fileName: string } } },
         type: string
     ) {
         this.appointmentName = appointmentName,
@@ -36,7 +36,7 @@ export class Appointment {
             this.type = type
     }
 
-    // how to create an instance, this allows us to convert between two types and guarantee that we have all properties
+    // how to create an instance, this allows us to convert between two types and guarantee that we have all properties //
     static build({
         appointmentName,
         appointmentLength,
@@ -48,7 +48,18 @@ export class Appointment {
         key,
         cardImage,
         type
-    }: Appointment) {
+    }: {
+        appointmentName: string
+        appointmentLength: number
+        specialistincluded: string[]
+        paymentType: string[]
+        withinNursingHours: boolean
+        appointmentFee: number
+        newPatient: boolean
+        key: string
+        cardImage: { fields: { file: { url: string, fileName: string } } }
+        type: string
+    }) {
         return new Appointment(
             appointmentName,
             appointmentLength,

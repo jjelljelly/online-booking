@@ -11,7 +11,7 @@ import { HeaderSection } from "../templates/HeaderSection";
 import { STEPS_NAMES, useStepsContext } from "@/app/context/stepsContext";
 
 
-export function NewPatientCards({ appointmentTypes }: any | null) {
+export function NewPatientCards({ appointmentTypes }: { appointmentTypes: Appointment[] | null }) {
     const patientData = usePatientContext()
     const value = useStepsContext()
 

@@ -24,22 +24,6 @@
     margin: 20px auto;
 }
 
-.atBanner h2 {
-    color: #1d355e;
-}
-
-.atBanner p {
-    margin-bottom: 0;
-}
-
-.hr {
-    width: 90%;
-    height: 1px;
-    margin: 20px auto;
-    background-color: #1d355e;
-    border: none;
-}
-
 .bookingForm {
     display: flex;
     flex-direction: column;
@@ -106,12 +90,6 @@
     color: red;
 }
 
-.textArea {
-    width: 90%;
-    margin: 10px auto;
-    padding: 10px;
-}
-
 .checkboxAlignment {
     width: 90%;
     display: flex;
@@ -123,18 +101,13 @@
 }
 
 .addressContainer {
-    width: 90%;
+    width: 95%;
     text-align: left;
     margin-left: 10px;
 }
 
 .addressContainer p {
     margin: 20px auto;
-}
-
-.addressText {
-    margin: 20px 20px 10px;
-    text-align: center;
 }
 
 .addressContainer>div>button {
@@ -159,11 +132,6 @@
 @media only screen and (max-width: 600px) {
     .bookingContainer {
         width: 98%;
-        margin: 10px auto;
-    }
-
-    .paypal-container {
-        width: 90%;
         margin: 10px auto;
     }
 }

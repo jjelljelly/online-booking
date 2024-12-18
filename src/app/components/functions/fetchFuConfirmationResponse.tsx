@@ -1,10 +1,17 @@
-export async function fetchFuConfirmationResponse(patientData: any, currDate: string) {
+import { DataType } from "@/app/context/patientContext";
+import { ConfirmationResponse } from "./fetchConfirmationResponse";
+
+export async function fetchFuConfirmationResponse(input: { patientData: DataType } | null, currDate: string): Promise<ConfirmationResponse | null> {
+
+    if (input == null) return null
+
+    const { patientData } = input
 
     const submittingData = {
-        appointment: patientData.patientData.appointment,
-        firstName: patientData.patientData.firstName,
-        lastName: patientData.patientData.lastName,
-        email: patientData.patientData.email,
+        appointment: patientData?.appointment,
+        firstName: patientData?.firstName,
+        lastName: patientData?.lastName,
+        email: patientData?.email,
         selectedDate: currDate
     }
     const options = {
@@ -21,5 +28,6 @@ export async function fetchFuConfirmationResponse(patientData: any, currDate: st
         return res;
     } catch (e) {
         console.error(e)
+        return null
     }
 }
