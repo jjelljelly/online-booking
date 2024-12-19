@@ -5,6 +5,7 @@ import { usePatientContext } from '@/app/context/patientContext';
 import style from './NewFollow.module.css'
 import { useStepsContext, STEPS_NAMES } from '@/app/context/stepsContext'
 import { CardActionArea } from '@mui/material';
+import { StylesProvider } from '@mui/styles';
 
 type SubmitItems = {
     name: string;
@@ -15,12 +16,12 @@ type SubmitItems = {
 const appointmentOptions = [
     {
         name: "Initial Visit",
-        description: "Select if this is your first appointment or if last appointment was over a year ago",
+        description: "Select if this is your first appointment or if your last appointment was over a year ago",
         step: STEPS_NAMES.STEP_1_2
     },
     {
         name: "Subsequent Visit",
-        description: "Select if you have been to the clinic within the last year",
+        description: "Select if you have been to the clinic within the last year ",
         step: STEPS_NAMES.STEP_1_3
     }
 ]
@@ -45,19 +46,23 @@ export function NewFollow() {
             </div>
             <div className={style.cardDiv}>
                 {appointmentOptions.map((item) =>
-                    <Card key={item.name} className={style.card} onClick={() => handleSubmit(item)}>
-                        <CardActionArea className={style.cardContent}>
-                            <CardContent>
-                                <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 16 }}>
-                                    {item.name}
-                                </Typography>
-                                <Typography variant="body2">
-                                    {item.description}
-                                </Typography>
-                            </CardContent>
-                            Click to proceed
-                        </CardActionArea>
-                    </Card>
+                    <StylesProvider injectFirst>
+                        <Card key={item.name} className={style.card} onClick={() => handleSubmit(item)}>
+                            <CardActionArea className={style.cardContent}>
+                                <CardContent>
+                                    <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 16 }}>
+                                        {item.name}
+                                    </Typography>
+                                    <Typography variant="body2">
+                                        {item.description}
+                                    </Typography>
+                                    <Typography className={style.textEnd}>
+                                        Click to proceed
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    </StylesProvider>
                 )}
             </div>
         </div>
