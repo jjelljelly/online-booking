@@ -5,7 +5,6 @@ import { usePatientContext } from '@/app/context/patientContext';
 import style from './NewFollow.module.css'
 import { useStepsContext, STEPS_NAMES } from '@/app/context/stepsContext'
 import { CardActionArea } from '@mui/material';
-import { StylesProvider } from '@mui/styles';
 
 type SubmitItems = {
     name: string;
@@ -46,23 +45,21 @@ export function NewFollow() {
             </div>
             <div className={style.cardDiv}>
                 {appointmentOptions.map((item) =>
-                    <StylesProvider injectFirst>
-                        <Card key={item.name} className={style.card} onClick={() => handleSubmit(item)}>
-                            <CardActionArea className={style.cardContent}>
-                                <CardContent>
-                                    <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 16 }}>
-                                        {item.name}
-                                    </Typography>
-                                    <Typography variant="body2">
-                                        {item.description}
-                                    </Typography>
-                                    <Typography className={style.textEnd}>
-                                        Click to proceed
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </StylesProvider>
+                    <Card key={item.name} sx={{ display: 'flex', justifyContent: 'space-evenly', borderRadius: '20px', width: '45%', margin: '30px 20px', backgroundColor: 'var(--light-blue)', border: 'solid 2px var(--light-blue)', color: 'white', boxShadow: '10px 5px 5px rgb(235, 235, 235)' }} onClick={() => handleSubmit(item)}>
+                        <CardActionArea sx={{ padding: '40px 30px 10px' }}>
+                            <CardContent>
+                                <Typography sx={{ padding: '0 0 10px', color: 'var(--dark-blue)', fontSize: '16px' }}>
+                                    {item.name}
+                                </Typography>
+                                <Typography sx={{ fontSize: '14px' }}>
+                                    {item.description}
+                                </Typography>
+                                <Typography sx={{ padding: '20px 0 0', fontSize: '12px' }}>
+                                    Click to proceed
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                    </Card>
                 )}
             </div>
         </div>
