@@ -1,0 +1,8 @@
+.headerDiv {
+    position: sticky;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 80px auto 80px;
+    grid-auto-rows: minmax(50px, auto);
+    border-bottom: 1px solid black;
+}

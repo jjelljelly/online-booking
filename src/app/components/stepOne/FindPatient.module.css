@@ -1,0 +1,50 @@
+.form {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form h2 {
+    margin: 10px 0px 40px;
+}
+
+.labelsDiv {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.labelsDiv input {
+    padding: 5px;
+    width: 100%;
+    margin: 10px 5px 5px 10px;
+}
+
+.form button {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    transition: 0.5s;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #1d355e;
+    background-color: var(--light-blue);
+    color: white;
+    -webkit-appearance: none;
+    outline: none;
+}
+
+.form button:hover {
+    background-color: #1d355e;
+    color: white;
+}
+
+@media screen and (max-width: 1200px) {
+    .form {
+        margin-top: 80px;
+    }
+}

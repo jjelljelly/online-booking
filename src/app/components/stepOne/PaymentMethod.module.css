@@ -1,0 +1,37 @@
+.headerDiv {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 8ch auto 8ch;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.paymentDiv {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.selectPayment {
+    padding: 20px;
+}
+
+.menuList {
+    background-color: rgba(36, 142, 194, 0.2);
+    color: rgb(32, 54, 95);
+    border: solid, 3px, rgba(32, 54, 95, 0.6);
+}
+
+.listItem:hover {
+    background-color: rgba(36, 142, 194, 0.8);
+    color: white;
+    position: relative;
+}
+
+@media screen and (max-width: 800px) {
+    .menuList {
+        width: 80%;
+        margin: 10px 40px 20px;
+    }
+}

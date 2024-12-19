@@ -1,95 +1,57 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import { useState, useEffect } from "react";
+import { useDataContext } from "./context/dataContext";
+import { AppointmentList } from "./components/AppointmentList";
+import style from './page.module.css'
+import { PatientDataProvider, DataType } from "./context/patientContext";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const info = useDataContext()
+  const [patientData, setPatientData] = useState<DataType>(null)
+  const mergePatientData = (patientData: DataType) => {
+    setPatientData(prev => ({ ...prev, ...patientData }))
+  }
+  const patientDataValue = { patientData, setPatientData: mergePatientData }
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
+  const endTime = new Date()
+  endTime.setFullYear(endTime.getFullYear() + 1)
+  const [startDate, setStartDate] = useState(new Date())
+
+  useEffect(() => {
+    if (!process.env.NEXT_PUBLIC_FIND_AVAILABILITY) {
+      throw new Error('No portal url')
+    }
+    fetch(process.env.NEXT_PUBLIC_FIND_AVAILABILITY, {
+      method: "POST",
+      body: JSON.stringify({
+        info: {
+          ...(info?.data ?? {}),
+          startTime: startDate.toISOString()
+        }
+      })
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        info?.setData({ ...(info?.data ?? {}), ...res })
+        const newStartTime = new Date(startDate)
+        newStartTime.setMonth(newStartTime.getMonth() + 2)
+        if (newStartTime < endTime) {
+          setStartDate(prev => newStartTime)
+        }
+      }).catch(error => console.error(error))
+  }, [startDate]);
+  return (
+    <div className={style.pageDiv}>
+      <main>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <PatientDataProvider patientData={patientDataValue}>
+            <AppointmentList />
+          </PatientDataProvider>
+        </LocalizationProvider>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }

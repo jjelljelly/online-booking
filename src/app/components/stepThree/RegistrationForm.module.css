@@ -1,0 +1,137 @@
+.books {
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow-y: scroll;
+    padding-bottom: 40px;
+}
+
+.bookingContainer {
+    width: 60%;
+    padding: 20px 0;
+    margin: 40px auto 10px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid var(--dark-blue);
+    border-radius: 10px;
+    background-color: #ebebeb;
+}
+
+.divider {
+    border: 1px solid var(--light-blue);
+    width: 90%;
+    margin: 20px auto;
+}
+
+.bookingForm {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.bookingForm select {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    border: none;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+}
+
+.bookingForm input {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    border: none;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+}
+
+.submitButton {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    transition: 0.5s;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid var(--dark-blue);
+    background-color: var(--light-blue);
+    color: white;
+    -webkit-appearance: none;
+    outline: none;
+}
+
+.submitButton:hover {
+    background-color: var(--dark-blue);
+    color: white;
+}
+
+.bookingForm label {
+    width: 100%;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.bookingLabel {
+    width: 45%;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.requiredIcon {
+    width: 45%;
+    text-align: right;
+    color: red;
+}
+
+.checkboxAlignment {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    text-align: left;
+}
+
+.addressContainer {
+    width: 95%;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.addressContainer p {
+    margin: 20px auto;
+}
+
+.addressContainer>div>button {
+    padding: 9px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 20px auto 10px;
+    cursor: pointer;
+    border: none;
+    transition: 0.4s;
+    background-color: var(--light-blue);
+    color: white;
+}
+
+@media (hover: hover) {
+    #addressContainer>div>button:hover {
+        background-color: white;
+        color: var(--light-blue);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .bookingContainer {
+        width: 98%;
+        margin: 10px auto;
+    }
+}
