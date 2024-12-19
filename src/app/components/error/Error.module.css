@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #20365F;
+    color: var(--dark-blue);
 }
 
 .errorDiv p {
@@ -15,7 +15,7 @@
 }
 
 .update {
-    background-color: #20365F;
+    background-color: var(--dark-blue);
     color: white;
     width: 80%;
     border-radius: 5px;

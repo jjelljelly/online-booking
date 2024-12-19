@@ -13,13 +13,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    border: 1px solid #1d355e;
+    border: 1px solid var(--dark-blue);
     border-radius: 10px;
     background-color: #ebebeb;
 }
 
 .divider {
-    border: 1px solid #248ec2;
+    border: 1px solid var(--light-blue);
     width: 90%;
     margin: 20px auto;
 }
@@ -57,15 +57,15 @@
     transition: 0.5s;
     cursor: pointer;
     border-radius: 5px;
-    border: 1px solid #1d355e;
-    background-color: #248ec2;
+    border: 1px solid var(--dark-blue);
+    background-color: var(--light-blue);
     color: white;
     -webkit-appearance: none;
     outline: none;
 }
 
 .submitButton:hover {
-    background-color: #1d355e;
+    background-color: var(--dark-blue);
     color: white;
 }
 
@@ -118,14 +118,14 @@
     cursor: pointer;
     border: none;
     transition: 0.4s;
-    background-color: #248ec2;
+    background-color: var(--light-blue);
     color: white;
 }
 
 @media (hover: hover) {
     #addressContainer>div>button:hover {
         background-color: white;
-        color: #248ec2;
+        color: var(--light-blue);
     }
 }
 

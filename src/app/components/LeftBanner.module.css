@@ -1,5 +1,5 @@
 .bannerWrap {
-    background-color: #20365F;
+    background-color: var(--dark-blue);
     color: white;
     position: fixed;
     height: 100vh;
@@ -33,7 +33,7 @@
 }
 
 .circle {
-    color: #20365F;
+    color: var(--dark-blue);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,7 +52,7 @@
     width: 50px;
     border-radius: 50%;
     border: white 2px solid;
-    background-color: #20365F;
+    background-color: var(--dark-blue);
 }
 
 .line {

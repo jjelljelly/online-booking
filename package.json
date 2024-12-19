@@ -20,15 +20,12 @@
     "next": "^14.2.12",
     "places-autocomplete-react": "^1.0.11",
     "react": "^18",
-    "react-dom": "^18",
-    "react-google-autocomplete": "^2.7.3",
-    "react-places-autocomplete": "^7.3.0"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@types/react-places-autocomplete": "^7.2.14",
     "typescript": "^5"
   }
 }

@@ -2,7 +2,7 @@ import style from './LeftBanner.module.css';
 import { useStepsContext, STEPS_NAMES } from '../context/stepsContext';
 
 export function LeftBanner() {
-    const value = useStepsContext()
+    const stepContext = useStepsContext()
 
     const STEP_1 = "Step 1"
     const STEP_2 = "Step 2"
@@ -21,7 +21,7 @@ export function LeftBanner() {
         [STEPS_NAMES.ERROR_SUBMIT]: ERROR
     }
 
-    const progress: string = STEP_MAP[value?.step ?? STEPS_NAMES.STEP_1_1]
+    const progress: string = STEP_MAP[stepContext?.step ?? STEPS_NAMES.STEP_1_1]
 
     return (
         <div className={style.bannerWrap}>

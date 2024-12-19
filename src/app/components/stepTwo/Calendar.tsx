@@ -41,7 +41,7 @@ function ServerDay(props: SlotProps) {
 export const DATE_FORMAT = "DD-MM-YYYY";
 export function Calendar() {
 
-    const value = useStepsContext()
+    const stepContext = useStepsContext()
     const info = useDataContext()
     const patientData = usePatientContext()
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -78,15 +78,15 @@ export function Calendar() {
     const handleSubmit = async (currDate: string) => {
         if (patientData?.patientData?.appointment?.isNewPatient) {
             patientData?.setPatientData({ selectedDate: currDate })
-            value?.setStep(STEPS_NAMES.STEP_3_1)
+            stepContext?.setStep(STEPS_NAMES.STEP_3_1)
         } else {
             setIsLoading(true)
             const submitBooking = await fetchFuConfirmationResponse(patientData, currDate)
             if (submitBooking?.outcome === RESPONSE_STRING) {
                 setIsLoading(false)
-                value?.setStep(STEPS_NAMES.STEP_3_2)
+                stepContext?.setStep(STEPS_NAMES.STEP_3_2)
             } else {
-                value?.setStep(STEPS_NAMES.ERROR_SUBMIT)
+                stepContext?.setStep(STEPS_NAMES.ERROR_SUBMIT)
             }
 
         }

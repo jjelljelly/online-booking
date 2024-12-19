@@ -12,11 +12,11 @@ import { STEPS_NAMES, useStepsContext } from "@/app/context/stepsContext";
 
 export function FollowPatientCards({ appointmentTypes }: { appointmentTypes: Appointment[] | null }) {
     const patientData = usePatientContext()
-    const value = useStepsContext()
+    const stepContext = useStepsContext()
 
     const handleChange = (appointment: Appointment) => {
         patientData?.setPatientData({ appointment: appointment })
-        value?.setStep(STEPS_NAMES.STEP_2_2)
+        stepContext?.setStep(STEPS_NAMES.STEP_2_2)
     }
 
     const checkInfo = useGetFollowPatientAppointments(appointmentTypes)

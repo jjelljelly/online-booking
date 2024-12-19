@@ -16,8 +16,8 @@
     width: 45%;
     margin: 30px 20px;
     border-radius: 20px;
-    background-color: #248ec2;
-    border: solid 2px #248ec2;
+    background-color: var(--light-blue);
+    border: solid 2px var(--light-blue);
     color: white;
     box-shadow: 10px 5px 5px rgb(235, 235, 235);
 }

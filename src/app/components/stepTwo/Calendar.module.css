@@ -11,14 +11,14 @@
 }
 
 .menuDate {
-    background-color: #248ec2;
+    background-color: var(--light-blue);
     border: 1px white solid;
     border-radius: 5px;
     color: white;
 }
 
 .menuDate:hover {
-    background-color: #1d355e;
+    background-color: var(--dark-blue);
     color: white;
 }
 

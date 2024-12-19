@@ -13,13 +13,13 @@ import { STEPS_NAMES, useStepsContext } from "@/app/context/stepsContext";
 
 export function NewPatientCards({ appointmentTypes }: { appointmentTypes: Appointment[] | null }) {
     const patientData = usePatientContext()
-    const value = useStepsContext()
+    const stepContext = useStepsContext()
 
     const checkInfo = useGetNewPatientAppointments(appointmentTypes)
 
     const handleChange = (appointment: Appointment) => {
         patientData?.setPatientData({ appointment: appointment })
-        value?.setStep(STEPS_NAMES.STEP_2_2)
+        stepContext?.setStep(STEPS_NAMES.STEP_2_2)
     }
     return (
         <>

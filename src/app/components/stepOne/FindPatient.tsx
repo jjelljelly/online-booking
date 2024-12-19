@@ -11,7 +11,7 @@ type FormEvent = { preventDefault: () => void; target: { dob: { value: string; }
 
 export function FindPatient() {
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const value = useStepsContext()
+    const stepContext = useStepsContext()
     const patientData = usePatientContext()
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
@@ -24,9 +24,9 @@ export function FindPatient() {
         if (data?.outcome === RESPONSE_STRING) {
             patientData?.setPatientData({ firstName: e.target.first_name.value, lastName: e.target.last_name.value, email: e.target.email.value, paymentMethod: data.paymentMethod })
             setIsLoading(false)
-            value?.setStep(STEPS_NAMES.STEP_2_1)
+            stepContext?.setStep(STEPS_NAMES.STEP_2_1)
         } else {
-            value?.setStep(STEPS_NAMES.ERROR_LOCATE)
+            stepContext?.setStep(STEPS_NAMES.ERROR_LOCATE)
         }
     }
 

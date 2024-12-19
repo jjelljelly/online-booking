@@ -27,12 +27,12 @@ const appointmentOptions = [
 
 export function NewFollow() {
 
-    const value = useStepsContext()
+    const stepContext = useStepsContext()
     const patientData = usePatientContext()
 
     const handleSubmit = async (item: SubmitItems) => {
-        patientData?.setPatientData({ isNewPatient: item?.name === "Initial Visit" ? true : false })
-        value?.setStep(item.step)
+        patientData?.setPatientData({ isNewPatient: item?.name === "Initial Visit" })
+        stepContext?.setStep(item.step)
     }
 
 

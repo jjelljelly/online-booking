@@ -1,4 +1,4 @@
-import style from './ErrorPatient.module.css'
+import style from './Error.module.css'
 import { STEPS_NAMES } from '@/app/context/stepsContext'
 import { HeaderSection } from '../templates/HeaderSection'
 

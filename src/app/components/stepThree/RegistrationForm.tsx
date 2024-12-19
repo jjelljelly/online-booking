@@ -12,7 +12,7 @@ export function RegistrationForm() {
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const patientData = usePatientContext()
-    const value = useStepsContext()
+    const stepContext = useStepsContext()
 
     //form fields
     const [title, setTitle] = useState('');
@@ -58,9 +58,9 @@ export function RegistrationForm() {
         const submitForm = await fetchConfirmationResponse(patientData)
         if (submitForm?.outcome === RESPONSE_STRING) {
             setIsLoading(false)
-            value?.setStep(STEPS_NAMES.STEP_3_2)
+            stepContext?.setStep(STEPS_NAMES.STEP_3_2)
         } else {
-            value?.setStep(STEPS_NAMES.ERROR_SUBMIT)
+            stepContext?.setStep(STEPS_NAMES.ERROR_SUBMIT)
         }
     }
 

@@ -32,7 +32,7 @@
     cursor: pointer;
     border-radius: 5px;
     border: 1px solid #1d355e;
-    background-color: #248ec2;
+    background-color: var(--light-blue);
     color: white;
     -webkit-appearance: none;
     outline: none;

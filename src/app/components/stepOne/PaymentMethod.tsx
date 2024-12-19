@@ -23,14 +23,14 @@ export enum INSURANCE_TYPE {
     OTHER = "OTHER"
 }
 
-const handleSubmit = (patientData: Data, value: StepsData, item: string) => {
-    patientData?.setPatientData({ paymentMethod: item })
-    value?.setStep(STEPS_NAMES.STEP_2_1)
-}
-
 export function PaymentMethod() {
-    const value = useStepsContext()
+    const stepContext = useStepsContext()
     const patientData = usePatientContext()
+
+    const handleSubmit = (item: string) => {
+        patientData?.setPatientData({ paymentMethod: item })
+        stepContext?.setStep(STEPS_NAMES.STEP_2_1)
+    }
 
     return (
         <>
@@ -43,7 +43,7 @@ export function PaymentMethod() {
                             <MenuItem
                                 className={style.listItem}
                                 key={item}
-                                onClick={() => handleSubmit(patientData, value, item)}
+                                onClick={() => handleSubmit(item)}
                             >
                                 <ListItemText>{item}</ListItemText>
                             </MenuItem>
