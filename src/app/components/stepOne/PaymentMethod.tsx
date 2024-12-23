@@ -1,10 +1,11 @@
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
+import { Theme } from '@mui/material';
 import ListItemText from '@mui/material/ListItemText';
-import { useStepsContext, StepsData, STEPS_NAMES } from '@/app/context/stepsContext';
+import { useStepsContext, STEPS_NAMES } from '@/app/context/stepsContext';
 import style from './PaymentMethod.module.css'
-import { usePatientContext, Data } from '@/app/context/patientContext';
+import { usePatientContext, } from '@/app/context/patientContext';
 import { HeaderSection } from '../templates/HeaderSection';
 
 export enum INSURANCE_TYPE {
@@ -27,6 +28,15 @@ export function PaymentMethod() {
     const stepContext = useStepsContext()
     const patientData = usePatientContext()
 
+    const menuList = (theme: Theme) => ({
+        backgroundColor: 'rgba(36, 142, 194, 0.2)',
+        color: 'rgb(32, 54, 95)',
+        border: 'solid, 3px, rgba(32, 54, 95, 0.6)',
+        [theme.breakpoints.down("sm")]: {
+            width: "90%"
+        }
+    })
+
     const handleSubmit = (item: string) => {
         patientData?.setPatientData({ paymentMethod: item })
         stepContext?.setStep(STEPS_NAMES.STEP_2_1)
@@ -38,10 +48,16 @@ export function PaymentMethod() {
             <div className={style.paymentDiv}>
                 <h4 className={style.selectPayment}>Please select your payment method</h4>
                 <Paper sx={{ width: 400 }}>
-                    <MenuList dense className={style.menuList}>
+                    <MenuList dense sx={menuList}>
                         {Object.values(INSURANCE_TYPE).map((item) =>
                             <MenuItem
-                                className={style.listItem}
+                                sx={{
+                                    '&:hover': {
+                                        backgroundColor: 'rgba(36, 142, 194, 0.8)',
+                                        color: 'white',
+                                        position: 'relative'
+                                    },
+                                }}
                                 key={item}
                                 onClick={() => handleSubmit(item)}
                             >

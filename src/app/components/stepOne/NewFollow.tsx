@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import { usePatientContext } from '@/app/context/patientContext';
 import style from './NewFollow.module.css'
 import { useStepsContext, STEPS_NAMES } from '@/app/context/stepsContext'
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, Theme } from '@mui/material';
 
 type SubmitItems = {
     name: string;
@@ -25,6 +25,24 @@ const appointmentOptions = [
     }
 ]
 
+export const getCardContainerStyle = (theme: Theme) => ({
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    borderRadius: '20px',
+    width: '45%',
+    margin: '30px 20px',
+    backgroundColor: 'var(--light-blue)',
+    border: 'solid 2px var(--light-blue)',
+    color: 'white',
+    boxShadow: '10px 5px 5px rgb(235, 235, 235)',
+    [theme.breakpoints.down("lg")]: {
+        width: "42%"
+    },
+    [theme.breakpoints.down("sm")]: {
+        width: "90%"
+    }
+});
+
 export function NewFollow() {
 
     const stepContext = useStepsContext()
@@ -35,7 +53,6 @@ export function NewFollow() {
         stepContext?.setStep(item.step)
     }
 
-
     return (
         <div className={style.pageDiv}>
             <div className={style.headerDiv}>
@@ -45,12 +62,17 @@ export function NewFollow() {
             </div>
             <div className={style.cardDiv}>
                 {appointmentOptions.map((item) =>
-                    <Card key={item.name} sx={{ display: 'flex', justifyContent: 'space-evenly', borderRadius: '20px', width: '45%', margin: '30px 20px', backgroundColor: 'var(--light-blue)', border: 'solid 2px var(--light-blue)', color: 'white', boxShadow: '10px 5px 5px rgb(235, 235, 235)' }} onClick={() => handleSubmit(item)}>
-                        <CardActionArea sx={{ padding: '40px 30px 10px' }}>
+                    <Card
+                        key={item.name}
+                        sx={getCardContainerStyle}
+                        onClick={() => handleSubmit(item)}
+                    >
+                        <CardActionArea sx={{ padding: '20px 30px 10px' }}>
                             <CardContent>
-                                <Typography sx={{ padding: '0 0 10px', color: 'var(--dark-blue)', fontSize: '16px' }}>
+                                <Typography sx={{ padding: '0 0 10px', color: 'white', fontSize: '16px' }}>
                                     {item.name}
                                 </Typography>
+                                <hr className={style.line} />
                                 <Typography sx={{ fontSize: '14px' }}>
                                     {item.description}
                                 </Typography>
@@ -64,4 +86,5 @@ export function NewFollow() {
             </div>
         </div>
     );
+
 }
