@@ -1,7 +1,6 @@
-import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
-import { Theme } from '@mui/material';
+import { Theme, Box } from '@mui/material';
 import ListItemText from '@mui/material/ListItemText';
 import { useStepsContext, STEPS_NAMES } from '@/app/context/stepsContext';
 import style from './PaymentMethod.module.css'
@@ -47,7 +46,7 @@ export function PaymentMethod() {
             <HeaderSection stepUpdate={STEPS_NAMES.STEP_1_1} headerText={'Select Payment Type'} />
             <div className={style.paymentDiv}>
                 <h4 className={style.selectPayment}>Please select your payment method</h4>
-                <Paper sx={{ width: 400 }}>
+                <Box sx={{ width: 400 }}>
                     <MenuList dense sx={menuList}>
                         {Object.values(INSURANCE_TYPE).map((item) =>
                             <MenuItem
@@ -65,7 +64,7 @@ export function PaymentMethod() {
                             </MenuItem>
                         )}
                     </MenuList>
-                </Paper>
+                </Box>
             </div>
         </>
     );

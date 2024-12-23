@@ -1,5 +1,5 @@
 import { Appointment } from "@/app/types/Appointment"
-import { useGetFollowPatientAppointments } from "./AppointmentSelectFunction"
+import { useGetFollowPatientAppointments } from "../functions/AppointmentSelectFunction"
 import Card from "@mui/material/Card"
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';

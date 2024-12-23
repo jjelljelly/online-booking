@@ -10,18 +10,6 @@
     width: 90%;
 }
 
-.menuDate {
-    background-color: var(--light-blue);
-    border: 1px white solid;
-    border-radius: 5px;
-    color: white;
-}
-
-.menuDate:hover {
-    background-color: var(--dark-blue);
-    color: white;
-}
-
 @media screen and (max-width: 1200px) {
     .layout {
         margin: 0 20px;
