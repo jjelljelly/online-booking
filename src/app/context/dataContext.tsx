@@ -12,7 +12,8 @@ export type DataType = {
     kaserWithNurseAvailableDates: string[],
     stevenWithNurseAvailableDates20: string[],
     stevenWithNurseAvailableDates40: string[],
-    stevenWithNurseAvailableDates60: string[]
+    stevenWithNurseAvailableDates60: string[],
+    stevenWhilstKaserInClinicAvailableDates: string[]
 } | null
 
 export type Data = {

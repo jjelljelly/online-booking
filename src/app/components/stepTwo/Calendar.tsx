@@ -7,7 +7,8 @@ import dayjs, { Dayjs } from 'dayjs';
 import { PickersDay, PickersDayProps } from '@mui/x-date-pickers/PickersDay';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
-import { SPECIALIST } from "./AppointmentSelectFunction";
+import { Theme } from '@mui/material';
+import { SPECIALIST } from "../functions/AppointmentSelectFunction";
 import { usePatientContext } from '@/app/context/patientContext';
 import { fetchFuConfirmationResponse } from '../functions/fetchFuConfirmationResponse';
 import { Loading } from '../Loading';
@@ -46,6 +47,17 @@ export function Calendar() {
     const patientData = usePatientContext()
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
+    const menuDate = (theme: Theme) => ({
+        backgroundColor: 'var(--light-blue)',
+        border: '1px white solid',
+        borderRadius: '5px',
+        color: 'white',
+        '&:hover': {
+            backgroundColor: 'var(--dark-blue)',
+            color: 'white'
+        }
+    })
+
     let diaryType: string[] = []
 
     if (patientData?.patientData?.appointment?.hasSpecialist(SPECIALIST.K_NAZIR)) {
@@ -54,7 +66,7 @@ export function Calendar() {
         } else {
             diaryType = info?.data?.kaserFinalAvailableDates ?? []
         }
-    } else if (patientData?.patientData?.appointment?.hasSpecialist(SPECIALIST.S_THOMAS) || patientData?.patientData?.appointment?.hasSpecialist(SPECIALIST.S_THOMAS_KN)) {
+    } else if (patientData?.patientData?.appointment?.hasSpecialist(SPECIALIST.S_THOMAS)) {
         if (patientData?.patientData.appointment.nurseRequired) {
             if (patientData?.patientData.appointment.appointmentLength === 20) {
                 diaryType = info?.data?.stevenWithNurseAvailableDates20 ?? []
@@ -72,7 +84,10 @@ export function Calendar() {
         }
     } else if (patientData?.patientData?.appointment?.hasSpecialist(SPECIALIST.K_NAZIR_THEN_ST)) {
         diaryType = info?.data?.kaserThenStevenAvailableDates ?? []
+    } else if (patientData?.patientData?.appointment?.hasSpecialist(SPECIALIST.S_THOMAS_KN)) {
+        diaryType = info?.data?.stevenWhilstKaserInClinicAvailableDates ?? []
     }
+
     const [appointmentDate, setAppointmentDate] = useState<dayjs.Dayjs>()
 
     const handleSubmit = async (currDate: string) => {
@@ -126,7 +141,7 @@ export function Calendar() {
                         diaryType.reduce((accumulator: React.ReactNode[], currDate: string) => {
                             if (dayjs(appointmentDate)?.isSame(dayjs(currDate), "day")) {
                                 accumulator.push(
-                                    <MenuItem className={style.menuDate} key={currDate} onClick={() => handleSubmit(currDate)}>
+                                    <MenuItem sx={menuDate} key={currDate} onClick={() => handleSubmit(currDate)}>
                                         {currDate.split(' ')[4].slice(0, 5)}
                                     </MenuItem>
                                 )
