@@ -12,28 +12,8 @@
     justify-content: center;
 }
 
-.card {
-    width: 45%;
-    margin: 30px 20px;
-    border-radius: 20px;
-    background-color: var(--light-blue);
-    border: solid 2px var(--light-blue);
-    color: white;
-    box-shadow: 10px 5px 5px rgb(235, 235, 235);
-}
-
-.cardContent {
-    padding: 40px 30px;
-}
-
-@media screen and (min-width: 701px) and (max-width: 1200px) {
-    .card {
-        width: 42%;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .card {
-        width: 90%;
-    }
+.line {
+    margin-bottom: 15px;
+    border: 1px solid white;
+    border-radius: 5px;
 }

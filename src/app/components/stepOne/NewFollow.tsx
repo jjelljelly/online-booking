@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import { usePatientContext } from '@/app/context/patientContext';
 import style from './NewFollow.module.css'
 import { useStepsContext, STEPS_NAMES } from '@/app/context/stepsContext'
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, Theme } from '@mui/material';
 
 type SubmitItems = {
     name: string;
@@ -15,15 +15,33 @@ type SubmitItems = {
 const appointmentOptions = [
     {
         name: "Initial Visit",
-        description: "Select if this is your first appointment or if last appointment was over a year ago",
+        description: "Select if this is your first appointment or if your last appointment was over a year ago",
         step: STEPS_NAMES.STEP_1_2
     },
     {
         name: "Subsequent Visit",
-        description: "Select if you have been to the clinic within the last year",
+        description: "Select if you have been to the clinic within the last year ",
         step: STEPS_NAMES.STEP_1_3
     }
 ]
+
+export const getCardContainerStyle = (theme: Theme) => ({
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    borderRadius: '20px',
+    width: '45%',
+    margin: '30px 20px',
+    backgroundColor: 'var(--light-blue)',
+    border: 'solid 2px var(--light-blue)',
+    color: 'white',
+    boxShadow: '10px 5px 5px rgb(235, 235, 235)',
+    [theme.breakpoints.down("lg")]: {
+        width: "42%"
+    },
+    [theme.breakpoints.down("sm")]: {
+        width: "90%"
+    }
+});
 
 export function NewFollow() {
 
@@ -35,7 +53,6 @@ export function NewFollow() {
         stepContext?.setStep(item.step)
     }
 
-
     return (
         <div className={style.pageDiv}>
             <div className={style.headerDiv}>
@@ -45,21 +62,29 @@ export function NewFollow() {
             </div>
             <div className={style.cardDiv}>
                 {appointmentOptions.map((item) =>
-                    <Card key={item.name} className={style.card} onClick={() => handleSubmit(item)}>
-                        <CardActionArea className={style.cardContent}>
+                    <Card
+                        key={item.name}
+                        sx={getCardContainerStyle}
+                        onClick={() => handleSubmit(item)}
+                    >
+                        <CardActionArea sx={{ padding: '20px 30px 10px' }}>
                             <CardContent>
-                                <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 16 }}>
+                                <Typography sx={{ padding: '0 0 10px', color: 'white', fontSize: '16px' }}>
                                     {item.name}
                                 </Typography>
-                                <Typography variant="body2">
+                                <hr className={style.line} />
+                                <Typography sx={{ fontSize: '14px' }}>
                                     {item.description}
                                 </Typography>
+                                <Typography sx={{ padding: '20px 0 0', fontSize: '12px' }}>
+                                    Click to proceed
+                                </Typography>
                             </CardContent>
-                            Click to proceed
                         </CardActionArea>
                     </Card>
                 )}
             </div>
         </div>
     );
+
 }
