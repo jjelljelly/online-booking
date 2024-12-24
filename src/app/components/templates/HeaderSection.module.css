@@ -6,3 +6,9 @@
     grid-auto-rows: minmax(50px, auto);
     border-bottom: 1px solid black;
 }
+
+@media screen and (max-width: 1200px) {
+    .headerDiv {
+        margin-bottom: 30px;
+    }
+}
