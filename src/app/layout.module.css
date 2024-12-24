@@ -9,9 +9,9 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    position: fixed;
+    /* position: fixed;
     top: 0;
-    right: 0;
+    right: 0; */
     overflow: auto;
 }
 
@@ -22,7 +22,7 @@
 
     .childrenDiv {
         width: 100%;
-        left: 0;
-        position: relative;
+        /* left: 0;
+        position: relative; */
     }
 }
