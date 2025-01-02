@@ -28,7 +28,7 @@ export function CardCalendar() {
                         alt={patientData?.patientData?.appointment?.cardImage?.fields?.file?.fileName ?? ""}
                     />
                     <CardContent>
-                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                        <Typography variant="body2" sx={{ color: 'text.secondary', fontFamily: "comorant", }}>
                             {patientData?.patientData?.appointment?.appointmentName}
                         </Typography>
                     </CardContent>

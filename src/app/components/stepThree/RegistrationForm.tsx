@@ -7,12 +7,15 @@ import { useStepsContext } from '@/app/context/stepsContext';
 import { fetchConfirmationResponse, RESPONSE_STRING } from '../functions/fetchConfirmationResponse';
 import { Loading } from '../Loading';
 import AutoComplete from 'places-autocomplete-react';
+import { RadioInput } from './RadioInput';
 
 export function RegistrationForm() {
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const patientData = usePatientContext()
     const stepContext = useStepsContext()
+
+    const [select, setSelect] = useState("");
 
     //form fields
     const [title, setTitle] = useState('');
@@ -126,13 +129,34 @@ export function RegistrationForm() {
                     </div>
                     <div className={style.addressContainer}>
                         <hr />
-                        <p>Your GP's Address:</p>
-                        <input type="email" value={gpEmail} onChange={(e) => setGpEmail(e.target.value)} placeholder="Please provide your GP's email if available"></input>
-                        <AutoComplete
-                            placesKey="AIzaSyAkuPHNHz8Ki1KV6n6iI1-EFVIC3ZAm0QY"
-                            inputId="gpAddress"
-                            setAddress={(addressObject: { [index: string]: {}; }) => addressSelection('gp', addressObject)}
-                        />
+                        <p>Would you like your reports sent to your GP?</p>
+                        <label className={style.boxContainer}>
+                            <RadioInput
+                                state={select}
+                                setState={setSelect}
+                                label="Yes"
+                                value="yes"
+                                name="sendGp"
+                            />
+                        </label>
+                        <label className={style.boxContainer}>
+                            <RadioInput
+                                state={select}
+                                setState={setSelect}
+                                label="No"
+                                value="no"
+                                name="sendGp"
+                            />
+                        </label>
+                        <div className={select === "yes" ? style.addressContainer : style.notVisible}>
+                            <p>Your GP's Address:</p>
+                            <input type="email" value={gpEmail} onChange={(e) => setGpEmail(e.target.value)} placeholder="Please provide your GP's email if available"></input>
+                            <AutoComplete
+                                placesKey="AIzaSyAkuPHNHz8Ki1KV6n6iI1-EFVIC3ZAm0QY"
+                                inputId="gpAddress"
+                                setAddress={(addressObject: { [index: string]: {}; }) => addressSelection('gp', addressObject)}
+                            />
+                        </div>
 
                         <hr />
                     </div>

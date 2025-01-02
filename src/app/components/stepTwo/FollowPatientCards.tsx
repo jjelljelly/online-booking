@@ -39,7 +39,7 @@ export function FollowPatientCards({ appointmentTypes }: { appointmentTypes: App
                                     alt={appointment.cardImage?.fields?.file?.fileName}
                                 />
                                 <CardContent>
-                                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                    <Typography variant="body2" sx={{ color: 'text.secondary', fontFamily: "comorant", }}>
                                         {appointment.appointmentName}
                                     </Typography>
                                 </CardContent>

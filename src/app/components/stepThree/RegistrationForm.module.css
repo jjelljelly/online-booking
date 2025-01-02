@@ -84,6 +84,20 @@
     margin-left: 10px;
 }
 
+.boxContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0 0;
+}
+
+.boxContainer input {
+    padding: 10px 0;
+}
+
+.notVisible {
+    display: none;
+}
+
 .requiredIcon {
     width: 45%;
     text-align: right;
