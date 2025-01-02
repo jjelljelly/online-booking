@@ -5,6 +5,8 @@ import { usePatientContext } from '@/app/context/patientContext';
 import style from './NewFollow.module.css'
 import { useStepsContext, STEPS_NAMES } from '@/app/context/stepsContext'
 import { CardActionArea, Theme } from '@mui/material';
+import { SpecialistBio } from './SpecialistBio';
+
 
 type SubmitItems = {
     name: string;
@@ -69,14 +71,14 @@ export function NewFollow() {
                     >
                         <CardActionArea sx={{ padding: '20px 30px 10px' }}>
                             <CardContent>
-                                <Typography sx={{ padding: '0 0 10px', color: 'white', fontSize: '16px' }}>
+                                <Typography sx={{ padding: '0 0 10px', color: 'white', fontSize: '16px', fontFamily: "comorant" }}>
                                     {item.name}
                                 </Typography>
                                 <hr className={style.line} />
-                                <Typography sx={{ fontSize: '14px' }}>
+                                <Typography sx={{ fontSize: '14px', fontFamily: "comorant" }}>
                                     {item.description}
                                 </Typography>
-                                <Typography sx={{ padding: '20px 0 0', fontSize: '12px' }}>
+                                <Typography sx={{ padding: '20px 0 0', fontSize: '12px', fontFamily: "comorant" }}>
                                     Click to proceed
                                 </Typography>
                             </CardContent>
@@ -84,6 +86,7 @@ export function NewFollow() {
                     </Card>
                 )}
             </div>
+            <SpecialistBio />
         </div>
     );
 

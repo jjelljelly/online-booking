@@ -1,0 +1,49 @@
+.cardContainer {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 45%;
+    max-height: 600px;
+    margin: 10px;
+    padding-top: 20px;
+    background-color: white;
+    border: dashed 1.5px var(--dark-blue);
+}
+
+.image {
+    object-fit: cover;
+    background-color: white;
+    overflow: hidden;
+
+}
+
+.line {
+    border: dashed 0.75px var(--dark-blue);
+    margin-top: 5px;
+}
+
+.pageBreakDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.pageBreak {
+    margin: 40px 0 40px;
+    border: solid 1.5px var(--dark-blue);
+    width: 80%;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 700px) {
+    .card {
+        width: 90%;
+    }
+
+    .cardContainer {
+        justify-content: center;
+    }
+}

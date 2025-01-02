@@ -1,3 +1,7 @@
+.pageDiv {
+    height: 100vh;
+}
+
 .headerDiv {
     display: grid;
     align-items: center;
