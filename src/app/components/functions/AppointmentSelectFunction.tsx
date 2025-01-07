@@ -30,7 +30,7 @@ export function useGetFollowPatientAppointments(appointmentTypes: Appointment[] 
     // Filter new appointment types and by specialist
 
     const filterFollowApp = appointmentTypes?.filter((appointment: Appointment) => !appointment.isNewPatient)
-    const kaserFollowOnlyAllPayments = filterFollowApp?.filter((appointment: Appointment) => appointment.hasSpecialist(SPECIALIST.K_NAZIR) || appointment.hasSpecialist(SPECIALIST.K_NAZIR_THEN_ST) || appointment.hasSpecialist(SPECIALIST.S_THOMAS_KN))
+    const kaserFollowOnlyAllPayments = filterFollowApp?.filter((appointment: Appointment) => appointment.hasSpecialist(SPECIALIST.K_NAZIR) || appointment.hasSpecialist(SPECIALIST.K_NAZIR_THEN_ST) || appointment.hasSpecialist(SPECIALIST.S_THOMAS_KN) || appointment.hasAppointmentKey("custom orthotics fitting"))
     const stevenOrKaserFollowApp = filterFollowApp?.filter((appointment: Appointment) => appointment.hasSpecialist(SPECIALIST.K_NAZIR) || appointment.hasSpecialist(SPECIALIST.S_THOMAS))
 
     if (data?.patientData?.paymentMethod === INSURANCE_TYPE.BUPA || data?.patientData?.paymentMethod === INSURANCE_TYPE.AXA_PPP) {

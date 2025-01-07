@@ -33,34 +33,60 @@ export function RegistrationForm() {
 
     // handle address select
     const addressSelection = (location: string, addressObject: { [index: string]: {} }) => {
-        const typedAddress = Object.keys(addressObject)
-            .reduce((acc: {}[], cur: string) => {
-                if (cur !== 'formattedAddress') {
-                    acc.push(addressObject[cur])
-                    return acc
-                }
-                return acc;
-            }, []).join(', ')
+
         if (addressObject) {
+            const typedAddress = Object.keys(addressObject)
+                .reduce((acc: {}[], cur: string) => {
+                    if (cur !== 'formattedAddress') {
+                        acc.push(addressObject[cur])
+                        return acc
+                    }
+                    return acc;
+                }, []).join(', ')
             if (location === 'home' && address !== typedAddress) {
                 setAddress(typedAddress)
             }
-            if (location === 'gp' && gpAddress !== typedAddress) {
-                setGpAddress(typedAddress)
+            if (select === 'yes') {
+                if (location === 'gp' && gpAddress !== typedAddress) {
+                    setGpAddress(typedAddress)
+                }
             }
         }
     }
+
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+
         setIsLoading(true)
-        patientData?.setPatientData({
-            registrationData: {
-                title: title, firstName: firstName, lastName: lastName, telephone: telephone, email: email, address: address, policy: policy, auth: auth, dob: dob, gpAddress: gpAddress, gpEmail: gpEmail, privacy: privacy
+
+        const payload = {
+            ...patientData,
+            patientData: {
+                ...patientData?.patientData,
+                registrationData: {
+                    title: title,
+                    firstName: firstName,
+                    lastName: lastName,
+                    telephone: telephone,
+                    email: email,
+                    address: address,
+                    policy: policy,
+                    auth: auth,
+                    dob: dob,
+                    gpAddress: gpAddress,
+                    gpEmail: gpEmail,
+                    privacy: privacy
+                }
             }
-        })
-        const submitForm = await fetchConfirmationResponse(patientData)
+        }
+
+        const submitForm = await fetchConfirmationResponse(payload)
         if (submitForm?.outcome === RESPONSE_STRING) {
             setIsLoading(false)
+            patientData?.setPatientData({
+                firstName: firstName,
+                lastName: lastName
+            })
             stepContext?.setStep(STEPS_NAMES.STEP_3_2)
         } else {
             stepContext?.setStep(STEPS_NAMES.ERROR_SUBMIT)
