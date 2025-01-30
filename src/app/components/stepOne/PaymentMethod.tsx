@@ -9,6 +9,7 @@ import { HeaderSection } from '../templates/HeaderSection';
 
 export enum INSURANCE_TYPE {
     SELF_FUNDING = "Self-funding",
+    AVIVA = "Aviva",
     AXA_PPP = "AXA PPP",
     AXA_INT = "AXA PPP International",
     AETNA = "Aetna",
