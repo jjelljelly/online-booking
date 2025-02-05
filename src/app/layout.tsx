@@ -7,6 +7,7 @@ import { StepsProvider, STEPS_NAMES } from './context/stepsContext'
 import { LeftBanner } from './components/LeftBanner'
 import { DataProvider, DataType } from './context/dataContext'
 import { setGoogleAnalytics } from './components/GoogleAnalytics'
+import Head from 'next/head'
 
 export default function Layout({
   children,
@@ -28,6 +29,17 @@ export default function Layout({
   return (
     <html lang="en">
       <body className={style.pageLayout}>
+        <Head>
+          <title>London Foot & Ankle Surgery - Book An Appointment</title>
+          <meta
+            name="description"
+            content="Book an appointment quickly and easily online with our foot and ankle experts based at 17 Harley Street, London"
+          />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0,user-scalable=0"
+          />
+        </Head>
         <StepsProvider value={value}>
           <DataProvider data={dataValue}>
             <LeftBanner />
