@@ -9,6 +9,7 @@ import Image from "next/image";
 import { usePatientContext } from "@/app/context/patientContext";
 import { HeaderSection } from "../templates/HeaderSection";
 import { STEPS_NAMES, useStepsContext } from "@/app/context/stepsContext";
+import { INSURANCE_TYPE } from "../stepOne/PaymentMethod";
 
 
 export function NewPatientCards({ appointmentTypes }: { appointmentTypes: Appointment[] | null }) {
@@ -41,6 +42,11 @@ export function NewPatientCards({ appointmentTypes }: { appointmentTypes: Appoin
                                     <Typography variant="body2" sx={{ color: 'text.secondary', fontFamily: "comorant", }}>
                                         {appointment.appointmentName}
                                     </Typography>
+                                    {patientData?.patientData?.paymentMethod === INSURANCE_TYPE.SELF_FUNDING &&
+                                        <Typography variant="body2" sx={{ color: 'text.secondary', fontFamily: "comorant", }}>
+                                            Appointment fee: £{appointment.appointmentFee}
+                                        </Typography>
+                                    }
                                 </CardContent>
                             </CardActionArea>
                         </Card>
