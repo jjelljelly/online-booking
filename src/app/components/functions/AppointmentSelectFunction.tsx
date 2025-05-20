@@ -17,7 +17,10 @@ export function useGetNewPatientAppointments(appointmentTypes: Appointment[] | n
     const filterNewApp = appointmentTypes?.filter((appointment: Appointment) => appointment.isNewPatient)
     const kaserNewOnlyAllPayments = filterNewApp?.filter((appointment: Appointment) => appointment.hasSpecialist(SPECIALIST.K_NAZIR) || appointment.hasSpecialist(SPECIALIST.K_NAZIR_THEN_ST) || appointment.hasSpecialist(SPECIALIST.S_THOMAS_KN))
     const stevenOrKaserNewApp = filterNewApp?.filter((appointment: Appointment) => appointment.hasSpecialist(SPECIALIST.K_NAZIR) || appointment.hasSpecialist(SPECIALIST.S_THOMAS))
-    if (data?.patientData?.paymentMethod === INSURANCE_TYPE.BUPA || data?.patientData?.paymentMethod === INSURANCE_TYPE.AXA_PPP) {
+    const stevenOrKaserNewAppNoSF = filterNewApp?.filter((appointment: Appointment) => appointment.hasSpecialist(SPECIALIST.K_NAZIR) && !appointment.hasPaymentMethod('All insurance no Self-funding') || appointment.hasSpecialist(SPECIALIST.S_THOMAS))
+    if (data?.patientData?.paymentMethod === INSURANCE_TYPE.SELF_FUNDING) {
+        return stevenOrKaserNewAppNoSF
+    } else if (data?.patientData?.paymentMethod === INSURANCE_TYPE.BUPA || data?.patientData?.paymentMethod === INSURANCE_TYPE.AXA_PPP) {
         return kaserNewOnlyAllPayments
     } else {
         return stevenOrKaserNewApp

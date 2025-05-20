@@ -16,7 +16,7 @@ export default function Home() {
   }
   const patientDataValue = { patientData, setPatientData: mergePatientData }
 
-  const endTime = new Date()
+  const endTime = new Date()  
   endTime.setFullYear(endTime.getFullYear() + 1)
   const [startDate, setStartDate] = useState(new Date())
 
@@ -43,6 +43,7 @@ export default function Home() {
         }
       }).catch(error => console.error(error))
   }, [startDate]);
+
   return (
     <div className={style.pageDiv}>
       <main>
