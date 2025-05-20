@@ -144,7 +144,7 @@ export function Calendar() {
                                     <MenuItem sx={menuDate} key={currDate} onClick={() => handleSubmit(currDate)}>
                                         {currDate.split(' ')[4].slice(0, 5)}
                                     </MenuItem>
-                                )
+                                )   
 
                             }
                             return accumulator
