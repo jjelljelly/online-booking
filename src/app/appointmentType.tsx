@@ -16,6 +16,8 @@ type AppointmentResponse = {
     key: string
     cardImage: { fields: { file: { url: string, fileName: string } } }
     type: string
+    appointmentCategory: string
+
 }
 
 export function AppointmentType() {

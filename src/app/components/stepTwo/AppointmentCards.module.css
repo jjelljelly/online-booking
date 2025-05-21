@@ -2,6 +2,10 @@
     height: 100vh;
 }
 
+.container {
+    padding: 20px;
+}
+
 .cardContainer {
     margin-top: 30px;
     display: flex;
