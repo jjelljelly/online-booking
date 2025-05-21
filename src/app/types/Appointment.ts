@@ -10,6 +10,7 @@ export class Appointment {
     key: string
     cardImage: { fields: { file: { url: string, fileName: string } } }
     type: string
+    appointmentCategory: string
 
     // constructor is private (developers cannot create an instance with "new Appointment()", they must use build method)
     private constructor(
@@ -22,7 +23,8 @@ export class Appointment {
         newPatient: boolean,
         key: string,
         cardImage: { fields: { file: { url: string, fileName: string } } },
-        type: string
+        type: string,
+        appointmentCategory: string
     ) {
         this.appointmentName = appointmentName,
             this.appointmentLength = appointmentLength,
@@ -34,6 +36,7 @@ export class Appointment {
             this.key = key,
             this.cardImage = cardImage,
             this.type = type
+        this.appointmentCategory = appointmentCategory
     }
 
     // how to create an instance, this allows us to convert between two types and guarantee that we have all properties //
@@ -47,7 +50,8 @@ export class Appointment {
         newPatient,
         key,
         cardImage,
-        type
+        type,
+        appointmentCategory
     }: {
         appointmentName: string
         appointmentLength: number
@@ -59,6 +63,7 @@ export class Appointment {
         key: string
         cardImage: { fields: { file: { url: string, fileName: string } } }
         type: string
+        appointmentCategory: string
     }) {
         return new Appointment(
             appointmentName,
@@ -70,7 +75,8 @@ export class Appointment {
             newPatient,
             key,
             cardImage,
-            type
+            type,
+            appointmentCategory
         )
     }
 
@@ -113,6 +119,9 @@ export class Appointment {
 
     hasAppointmentKey(appointmentKey: string) {
         return this.key.includes(appointmentKey)
+    }
+    hasappointmentCategory(appointmentCategory: string) {
+        return this.appointmentCategory.includes(appointmentCategory)
     }
 
 }
