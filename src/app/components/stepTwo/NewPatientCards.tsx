@@ -45,6 +45,9 @@ export function NewPatientCards({ appointmentTypes }: { appointmentTypes: Appoin
             acc.minorProcedures.push(appointment)
         }
         acc.consultations.sort((a, b) => a.appointmentName.localeCompare(b.appointmentName))
+        acc.consultations.push(
+            ...acc.consultations.splice(acc.consultations.findIndex((appointment) => appointment.appointmentName === "New consultation with Gait analysis"), 1)
+        )
         acc.surgicalConsultations.sort((a, b) => a.appointmentName.localeCompare(b.appointmentName))
         acc.minorProcedures.sort((a, b) => a.appointmentName.localeCompare(b.appointmentName))
         return acc
