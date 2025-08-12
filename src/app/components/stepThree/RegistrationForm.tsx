@@ -9,6 +9,21 @@ import { Loading } from '../Loading';
 import AutoComplete from 'places-autocomplete-react';
 import { RadioInput } from './RadioInput';
 
+// Declare gtag as a global function
+declare global {
+    interface Window { gtag: (...args: any[]) => void }
+}
+
+function gtag_report_conversion(url: string | undefined) {
+    window.gtag('event', 'conversion', {
+
+        'send_to': 'AW-953431389/ALvkCPLP9IQbEN3q0MYD',
+
+        'event_callback': null
+    });
+    return false;
+}
+
 export function RegistrationForm() {
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -83,6 +98,7 @@ export function RegistrationForm() {
         const submitForm = await fetchConfirmationResponse(payload)
         if (submitForm?.outcome === RESPONSE_STRING) {
             setIsLoading(false)
+            gtag_report_conversion(window.location.href ?? "");
             patientData?.setPatientData({
                 firstName: firstName,
                 lastName: lastName
