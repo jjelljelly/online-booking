@@ -7,6 +7,7 @@ import style from './page.module.css'
 import { PatientDataProvider, DataType } from "./context/patientContext";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import Head from "next/head";
 
 export default function Home() {
   const info = useDataContext()
@@ -16,7 +17,7 @@ export default function Home() {
   }
   const patientDataValue = { patientData, setPatientData: mergePatientData }
 
-  const endTime = new Date()  
+  const endTime = new Date()
   endTime.setFullYear(endTime.getFullYear() + 1)
   const [startDate, setStartDate] = useState(new Date())
 
